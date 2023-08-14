@@ -1,11 +1,13 @@
 import pymysql
 import pyecharts
 import openpyxl
-from pyecharts import Geo,Map,Bar,Page,WordCloud,Pie,Line
-from pyecharts import Scatter
+from pyecharts import *
+from pyecharts import *
 import numpy as np
 import os
 import pandas as pd
+from pyecharts.charts import Map, Bar, WordCloud, Scatter, Pie
+
 dict={'lixia':'历下区','laiwuqu':'莱芜区','shizhong':'市中区','tianqiao':'天桥区','licheng':'历城区','huaiyin':"槐荫区",'gaoxin':'高新区','jiyang':'济阳区','shanghe':"商河县",'pingyin':'平阴县','zhangqiu1':'章丘区',
       'changqing':'长清区'}
 def login(user,password):
