@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息查询</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link type="text/css" rel="stylesheet" href="../static/layui/css/layui.css" />
+    <link type="text/css" rel="stylesheet" href="../static/scrollbar/jquery.scrollbar.css" />
+    <link type="text/css" rel="stylesheet" href="../static/admin/iconfont/iconfont.css" />
+    <link type="text/css" rel="stylesheet" href="../static/admin/css/page-item.css" />
+</head>
+<body>
+<div class="page-main scrollbar-inner">
+    <div class="page-container">
+        <div class="page-fluid">
+            <form class="layui-form layui-unselect table-form" action="">
+                <label class="layui-form-label">区域名称</label>
+                <div class="layui-inline">
+                    <input type="text" name="search" required lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" id="content"/>
+                </div>
+                <div class="layui-inline">
+                    <button type="button" lay-filter="sub" lay-submit class="layui-btn" id="search">搜索</button>
+                </div>
+            </form>
+            <table id="list" lay-filter="list"></table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../static/admin/iconfont/iconfont.js"></script>
+<script type="text/javascript" src="../static/jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../static/admin/js/common.js"></script>
+<script type="text/javascript" src="../static/scrollbar/jquery.scrollbar.min.js"></script>
+<script type="text/javascript" src="../static/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['layer' , 'form' , 'table' , 'laytpl'] , function () {
+        var layer = layui.layer,
+            form = layui.form,
+            table = layui.table
+        laytpl = layui.laytpl;
+
+        /*表格渲染*/
+        table.render({
+            elem : '#list',
+            url: '/query_all', //数据接口,
+            toolbar: '#demo',
+            page: true, //开启分页,
+            id: "studentTable",
+            cols : [[
+                {field :'user1' , title :'名称'},
+                {field :'user2' , title :'小区名'},
+                {field :'user3' , title :'位置'},
+                {field :'user4' , title :'房价类型'},
+                {field :'user5' , title :'面积'},
+                {field :'user6' , title :'朝向'},
+                {field :'user7' , title :'装修'},
+                {field :'user8' , title :'楼层'},
+                {field :'user9' , title :'年份'},
+                {field :'user10' , title :'楼况'},
+                {field :'user11' , title :'关注人数'},
+                {field :'user12' , title :'发布时间'},
+                {field :'user13' , title :'总价'},
+                {field :'user14' , title :'单价'},
+                {field :'user15' , title :'区域'},
+
+
+            ]]
+        });
+        $("#search").click(function () {
+            var content = $("#content").val()
+            console.log(content)
+            if (content !== "") {
+                table.reload('studentTable', {
+                    url: '/query_all'
+                    , method: 'get'
+                    , where: {content: content} //设定异步数据接口的额外参数
+                    , page: {
+                        curr: 1 ,//重新从第 1 页开始
+                    }
+                })
+            } else {
+                table.reload('studentTable', {
+                    url: '/query_all'
+                    , method: 'get'
+                    , where: {content:""} //设定异步数据接口的额外参数
+                    , page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                })
+            }
+        })
+
+
+
+
+
+
+
+    });
+</script>
+</body>
+</html>
