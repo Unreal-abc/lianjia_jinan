@@ -6,7 +6,7 @@ from pyecharts import *
 import numpy as np
 import os
 import pandas as pd
-from pyecharts.charts import Map, Bar, WordCloud, Scatter, Pie
+from pyecharts import Map, Bar, WordCloud, Scatter, Pie
 
 dict={'lixia':'历下区','laiwuqu':'莱芜区','shizhong':'市中区','tianqiao':'天桥区','licheng':'历城区','huaiyin':"槐荫区",'gaoxin':'高新区','jiyang':'济阳区','shanghe':"商河县",'pingyin':'平阴县','zhangqiu1':'章丘区',
       'changqing':'长清区'}
@@ -24,7 +24,7 @@ def ex():
     wb=openpyxl.load_workbook(path+'\\protect\\static\\shuju\hrb.xlsx')
     ws=wb['Sheet1']
     a=2
-    db = pymysql.connect(host='localhost', user='root', password='123456789', port=3306, database='lianjia')
+    db = pymysql.connect(host='192.168.85.100', user='root', password='123456', port=3306, database='lianjia')
     cursor = db.cursor()
     sql = "SELECT *  FROM guangzhou"
     cursor.execute(sql)

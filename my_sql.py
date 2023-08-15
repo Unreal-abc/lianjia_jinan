@@ -1,7 +1,7 @@
 import pymysql
 import os
 import csv
-db = pymysql.connect(host='localhost', user='root', password='123456', port=3306, charset='utf8mb4')
+db = pymysql.connect(host='192.168.85.100', user='root', password='123456', port=3306, charset='utf8mb4')
 cursor = db.cursor()
 sql = "CREATE DATABASE IF NOT EXISTS lianjia"
 # 执行创建数据库的sql
